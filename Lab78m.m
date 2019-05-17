@@ -1,0 +1,14 @@
+samples = [1,20000];
+[y, fs] = audioread('1.mp3',samples);
+y = reshape(y,[],1);
+x = y(1400:1900);
+%stem(x);
+u = randn(length(x),1);
+y2 = conv(u,x);
+subplot(2,1,1);
+[a,e] = arcov(y2,200);
+a = transpose(a);
+plot(a);
+subplot(2,1,2);
+y3 = y2(1:length(x))-x;
+plot(y3);
